@@ -1,17 +1,18 @@
 {
     "name": "studyflow-app",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Open-source task and project management tool designed for university students and academic teams",
     "main": "src/app.js",
     "scripts": {
-        "dev": "echo 'Development server not yet configured. Coming in v0.1.0'",
-        "build": "echo 'Build process not yet configured. Coming in v0.1.0'",
-        "test": "echo 'Tests not yet configured. Coming in v0.1.0'",
-        "lint": "echo 'Linting not yet configured. Coming in v0.1.0'"
+        "dev": "npx --yes http-server public -p 3000 -c-1",
+        "start": "npx --yes http-server public -p 3000 -c-1",
+        "build": "echo 'Static app - no build step required'",
+        "test": "echo 'Tests not yet configured. Coming in v0.2.0'",
+        "lint": "echo 'Linting not yet configured. Coming in v0.2.0'"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/luisjarquec/studyflow-app.git"
+        "url": "git+https://github.com/nickymarzz/studyflow-app.git"
     },
     "keywords": [
         "study",
@@ -26,9 +27,9 @@
     "author": "StudyFlow Contributors",
     "license": "Apache-2.0",
     "bugs": {
-        "url": "https://github.com/luisjarquec/studyflow-app/issues"
+        "url": "https://github.com/nickymarzz/studyflow-app/issues"
     },
-    "homepage": "https://github.com/luisjarquec/studyflow-app#readme",
+    "homepage": "https://github.com/nickymarzz/studyflow-app#readme",
     "engines": {
         "node": ">=16.0.0",
         "npm": ">=8.0.0"

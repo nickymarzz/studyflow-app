@@ -13,45 +13,137 @@
 </head>
 
 <body>
-
-    <header>
-        <h1>📚 StudyFlow</h1>
-        <p>Master Your Academic Life</p>
+    <header class="app-header">
+        <div class="header-left">
+            <h1>📚 StudyFlow</h1>
+            <span class="version-badge">v0.1.0</span>
+        </div>
+        <div class="header-center">
+            <select id="boardSelect" class="board-select" aria-label="Select board">
+                <option value="default">📘 My Tasks</option>
+            </select>
+            <button id="addBoardBtn" class="btn-icon" title="Add new board">
+                <span>+</span>
+            </button>
+        </div>
+        <div class="header-right">
+            <button id="addTaskBtn" class="btn btn-primary" title="Add new task">
+                <span>+</span> New Task
+            </button>
+            <button id="themeToggle" class="btn-icon" title="Toggle dark mode" aria-label="Toggle dark mode">
+                <span id="themeIcon">🌙</span>
+            </button>
+        </div>
     </header>
 
-    <main>
-        <section>
-            <h2>Welcome to StudyFlow</h2>
-            <p>StudyFlow is an open-source task and project management tool designed specifically for university
-                students and academic teams.</p>
-
-            <h3>🚧 Under Development</h3>
-            <p>This is the skeleton structure for version <strong>v0.0.1</strong>. The core application is currently in
-                development.</p>
-
-            <h3>📖 Learn More</h3>
-            <p>Visit our <a href="https://studyflow-app.readthedocs.io/" target="_blank">documentation</a> to learn
-                about planned features and how to contribute.</p>
-
-            <h3>🌐 Project Website</h3>
-            <p>Check out the full <a href="../website/index.html">StudyFlow website</a> for more information about
-                features and community.</p>
-
-            <h3>🔗 Quick Links</h3>
-            <ul>
-                <li><a href="https://github.com/luisjarquec/studyflow-app" target="_blank">GitHub Repository</a></li>
-                <li><a href="https://discord.gg/v2ctzYdp" target="_blank">Discord Community</a></li>
-                <li><a href="https://studyflow-app.readthedocs.io/" target="_blank">Documentation</a></li>
-            </ul>
-        </section>
+    <main class="app-main">
+        <div class="kanban-container" id="kanbanBoard">
+            <div class="kanban-column" data-status="todo">
+                <div class="column-header">
+                    <h3><span class="column-dot todo-dot"></span> To Do</h3>
+                    <span class="task-count" id="todo-count">0</span>
+                </div>
+                <div class="task-list" id="todo-list" data-status="todo">
+                </div>
+            </div>
+            <div class="kanban-column" data-status="inprogress">
+                <div class="column-header">
+                    <h3><span class="column-dot inprogress-dot"></span> In Progress</h3>
+                    <span class="task-count" id="inprogress-count">0</span>
+                </div>
+                <div class="task-list" id="inprogress-list" data-status="inprogress">
+                </div>
+            </div>
+            <div class="kanban-column" data-status="done">
+                <div class="column-header">
+                    <h3><span class="column-dot done-dot"></span> Done</h3>
+                    <span class="task-count" id="done-count">0</span>
+                </div>
+                <div class="task-list" id="done-list" data-status="done">
+                </div>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        <p>StudyFlow v0.0.1 | Built by students, for students 🎓</p>
-        <p><a href="https://github.com/luisjarquec/studyflow-app/blob/main/LICENSE">Apache 2.0 License</a></p>
+    <div id="taskModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">New Task</h2>
+                <button class="modal-close" id="closeModalBtn" aria-label="Close">&times;</button>
+            </div>
+            <form id="taskForm">
+                <input type="hidden" id="taskId" />
+                <div class="form-group">
+                    <label for="taskTitle">Title *</label>
+                    <input type="text" id="taskTitle" required maxlength="100" placeholder="e.g. Finish CS assignment" />
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription">Description</label>
+                    <textarea id="taskDescription" rows="3" maxlength="500"
+                        placeholder="Add details, links, notes..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskStatus">Status</label>
+                        <select id="taskStatus">
+                            <option value="todo">To Do</option>
+                            <option value="inprogress">In Progress</option>
+                            <option value="done">Done</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskPriority">Priority</label>
+                        <select id="taskPriority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskDueDate">Due Date</label>
+                        <input type="date" id="taskDueDate" />
+                    </div>
+                    <div class="form-group">
+                        <label for="taskReminder">Reminder</label>
+                        <input type="datetime-local" id="taskReminder" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelTaskBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="boardModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="boardModalTitle">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2 id="boardModalTitle">New Board</h2>
+                <button class="modal-close" id="closeBoardModalBtn" aria-label="Close">&times;</button>
+            </div>
+            <form id="boardForm">
+                <div class="form-group">
+                    <label for="boardName">Board Name *</label>
+                    <input type="text" id="boardName" required maxlength="50" placeholder="e.g. CS 101" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelBoardBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Board</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <footer class="app-footer">
+        <p>StudyFlow v0.1.0 | Built by students, for students 🎓</p>
     </footer>
 
-    <script src="../src/app.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>
