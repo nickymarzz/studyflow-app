@@ -5,6 +5,9 @@
     "main": "src/app.js",
     "scripts": {
         "dev": "npx --yes http-server public -p 3000 -c-1",
+        "dev:app": "npx --yes http-server public -p 3000 -c-1",
+        "dev:website": "cd website && bundle exec jekyll serve",
+        "dev:docs": "cd docs && make html",
         "start": "npx --yes http-server public -p 3000 -c-1",
         "build": "echo 'Static app - no build step required'",
         "test": "echo 'Tests not yet configured. Coming in v0.2.0'",

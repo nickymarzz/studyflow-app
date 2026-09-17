@@ -30,36 +30,36 @@ Currently, the project includes:
 - ✅ Project structure and contribution guidelines
 - 🚧 Core application (in development)
 
-## Folder Structure
+## Architecture (Monorepo)
 
-- `website/` — Jekyll-based project website (marketing site)
-- `public/` — HTML & CSS files for the application
-- `src/` — JavaScript code (Empty for skeleton version)
-- `docs/` — Sphinx documentation source files
-- `build/` — Generated documentation
-- Root files — license, contribution guides, etc.
+To maintain a professional, industry-standard structure, StudyFlow is organized as a **Monorepo**. It contains three primary components:
+
+1. **The Core App** (`public/` & `src/`): The actual task management web application.
+2. **The Marketing Website** (`website/`): A Jekyll-based landing page to promote the app.
+3. **The Technical Docs** (`docs/`): Sphinx-based documentation for developers and contributors.
 
 ## Quick Start
 
-### Running the Website Locally
+We provide unified npm scripts in `package.json` to make running any part of the project seamless:
 
 ```bash
-cd website
-bundle install
-bundle exec jekyll serve
+# 1. Start the Core App (StudyFlow)
+npm run dev:app
+
+# 2. Start the Jekyll Marketing Website
+npm run dev:website
+
+# 3. Build the Sphinx Documentation
+npm run dev:docs
 ```
 
-Visit `http://localhost:4000` to view the website.
+## Deployments & Releases
 
-### Building Documentation
+This project utilizes modern CI/CD practices for automated deployment and versioning:
 
-```bash
-# On Windows
-.\make html
-
-# On Unix/Mac
-make html
-```
+- **GitHub Pages Deployment**: The marketing website (`website/`) is automatically deployed to GitHub Pages via GitHub Actions (`.github/workflows/jekyll-gh-pages.yml`) on every push to the `main` branch.
+- **Read the Docs Deployment**: The technical documentation (`docs/`) is automatically built and hosted by ReadTheDocs using the `.readthedocs.yaml` configuration.
+- **GitHub Releases**: Stable versions are tagged and published via **GitHub Releases**, attaching the source code automatically for users to download.
 
 ## Documentation
 
