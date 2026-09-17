@@ -14,9 +14,7 @@ With StudyFlow, you can:
 
 - **📋 Kanban Boards** — Visualize your workflow with customizable columns for each course
 - **🔔 Smart Reminders** — Never miss a deadline with customizable notifications
-- **📊 Progress Tracking** — View analytics on your study habits and time spent
-- **📁 Resource Management** — Attach lecture notes, PDFs, and links directly to tasks
-- **👥 Collaboration** — Work on group projects with shared boards and real-time updates
+- **📊 Progress Tracking** — View analytics on your study habits and task completion
 - **🌙 Dark Mode** — Easy on the eyes for late-night study sessions
 - **🔒 Privacy First** — Self-host and keep your academic data private
 

@@ -9,6 +9,7 @@
     <meta name="keywords" content="study, productivity, task management, students, kanban, academic" />
     <meta name="author" content="StudyFlow Contributors" />
     <title>StudyFlow - Master Your Academic Life</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -27,6 +28,9 @@
             </button>
         </div>
         <div class="header-right">
+            <button id="analyticsBtn" class="btn-icon" title="View Analytics">
+                <span>📊</span>
+            </button>
             <button id="addTaskBtn" class="btn btn-primary" title="Add new task">
                 <span>+</span> New Task
             </button>
@@ -134,6 +138,30 @@
                     <button type="submit" class="btn btn-primary">Create Board</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div id="analyticsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="analyticsModalTitle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="analyticsModalTitle">Progress Tracking</h2>
+                <button class="modal-close" id="closeAnalyticsModalBtn" aria-label="Close">&times;</button>
+            </div>
+            <div class="analytics-container" style="padding: 20px; display: flex; flex-direction: column; gap: 20px;">
+                <div class="analytics-stats" style="display: flex; justify-content: space-around; text-align: center;">
+                    <div class="stat-card">
+                        <h3 id="statTotalTasks" style="font-size: 2rem; color: var(--primary);">0</h3>
+                        <p>Total Tasks</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="statCompletionRate" style="font-size: 2rem; color: var(--success);">0%</h3>
+                        <p>Completion Rate</p>
+                    </div>
+                </div>
+                <div class="chart-wrapper" style="position: relative; height: 300px; width: 100%;">
+                    <canvas id="taskStatusChart"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 

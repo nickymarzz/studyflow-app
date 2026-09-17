@@ -33,7 +33,8 @@ const StudyFlow = {
         currentBoard: 'default',
         theme: 'light',
         draggedTaskId: null,
-        remindersSent: new Set()
+        remindersSent: new Set(),
+        chartInstance: null
     },
 
     boards: {
@@ -438,6 +439,53 @@ const StudyFlow = {
         if (modal) modal.classList.remove('open');
     },
 
+    openAnalyticsModal: () => {
+        const modal = document.getElementById('analyticsModal');
+        if (!modal) return;
+        
+        const tasks = StudyFlow.tasks.getAll();
+        const total = tasks.length;
+        const done = tasks.filter(t => t.status === 'done').length;
+        const inprogress = tasks.filter(t => t.status === 'inprogress').length;
+        const todo = tasks.filter(t => t.status === 'todo').length;
+        
+        document.getElementById('statTotalTasks').textContent = total;
+        document.getElementById('statCompletionRate').textContent = total === 0 ? '0%' : Math.round((done / total) * 100) + '%';
+        
+        const ctx = document.getElementById('taskStatusChart');
+        if (StudyFlow.state.chartInstance) {
+            StudyFlow.state.chartInstance.destroy();
+        }
+        
+        if (ctx) {
+            StudyFlow.state.chartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['To Do', 'In Progress', 'Done'],
+                    datasets: [{
+                        data: [todo, inprogress, done],
+                        backgroundColor: ['#ff9f43', '#00cfe8', '#28c76f'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: StudyFlow.state.theme === 'dark' ? '#d0d2d6' : '#6e6b7b' } }
+                    }
+                }
+            });
+        }
+        
+        modal.classList.add('open');
+    },
+
+    closeAnalyticsModal: () => {
+        const modal = document.getElementById('analyticsModal');
+        if (modal) modal.classList.remove('open');
+    },
+
     deleteTaskConfirm: (id) => {
         const task = StudyFlow.tasks.getById(id);
         if (!task) return;
@@ -525,6 +573,12 @@ const StudyFlow = {
 
         document.getElementById('boardSelect')?.addEventListener('change', (e) => {
             StudyFlow.boards.switch(e.target.value);
+        });
+
+        document.getElementById('analyticsBtn')?.addEventListener('click', StudyFlow.openAnalyticsModal);
+        document.getElementById('closeAnalyticsModalBtn')?.addEventListener('click', StudyFlow.closeAnalyticsModal);
+        document.getElementById('analyticsModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'analyticsModal') StudyFlow.closeAnalyticsModal();
         });
 
         document.getElementById('themeToggle')?.addEventListener('click', StudyFlow.settings.toggleTheme);
