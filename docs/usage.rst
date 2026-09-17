@@ -4,145 +4,66 @@ How to Use StudyFlow
 This guide will help you understand how to use StudyFlow effectively for managing your academic life.
 
 .. note::
-   StudyFlow is currently in early development (v0.0.1). This guide describes planned features 
-   and current functionality.
+   StudyFlow is currently at version **0.1.0 (MVP)**. The core application is an interactive, lightweight Single Page Application running entirely in the browser with LocalStorage.
 
-Current Features
-----------------
+Using the Core Application (v0.1.0)
+-----------------------------------
 
-Jekyll Website
-~~~~~~~~~~~~~~
+Start the application with::
 
-The StudyFlow website is currently available and provides information about the project:
+    npm run dev:app
 
-**Viewing the Website**
-
-Visit the live website or run it locally::
-
-    cd website
-    bundle exec jekyll serve
-
-Navigate to ``http://localhost:4000`` to explore:
-
-* **Home Page** - Overview of StudyFlow and its mission
-* **Features Page** - Detailed feature showcase
-* **Community Page** - Links to Discord, GitHub Discussions, and Google Group
-* **Contact Page** - Ways to get in touch with the team
-
-Planned Features (Coming Soon)
--------------------------------
-
-The following features are planned for the StudyFlow application:
+Navigate to ``http://localhost:3000`` in your browser.
 
 Managing Kanban Boards
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-**Creating a Board**
+**Creating & Switching Boards**
 
-1. Create a new board for each course or project
-2. Name your board (e.g., "CS101 - Data Structures")
-3. Customize columns (To Do, In Progress, Done, etc.)
+1. Click **+ New Board** in the header.
+2. Enter a descriptive title (e.g., "CS101 - Data Structures" or "Final Term Project").
+3. Use the dropdown board selector in the top bar to switch between your active course boards instantly.
 
-**Adding Tasks**
+**Adding and Managing Tasks**
 
-1. Click "Add Task" in any column
-2. Enter task details:
+1. Click **+ Add Task** in the header or press ``Ctrl+N``.
+2. Provide a title, description, course status (To Do, In Progress, Done), priority (Low, Medium, High), and due date.
+3. Drag and drop task cards between columns as you work.
+4. Click the edit icon (✏️) or double-click any card to update details, or the trash icon (🗑️) to delete a task.
+
+**Smart Reminders**
+
+1. When adding or editing a task, specify a date and time in the **Reminder Date & Time** field.
+2. Grant desktop notification permissions when prompted.
+3. StudyFlow checks active reminders and triggers native desktop alerts when your deadlines approach.
+
+**Viewing Progress Analytics**
+
+1. Click the **📊 Analytics** button in the header.
+2. View key productivity metrics:
    
-   * Title (e.g., "Complete Assignment 3")
-   * Description
-   * Due date
-   * Priority level
-   * Attach resources (PDFs, links, notes)
+   * Total task count
+   * Overall task completion rate (%)
+   * Visual doughnut breakdown of tasks by status (To Do, In Progress, Done)
 
-3. Drag and drop tasks between columns as you progress
+**Theme Customization**
 
-**Organizing Tasks**
+* Toggle between Dark Mode and Light Mode anytime by clicking the theme toggle icon (☀️ / 🌙) in the header.
+* Your theme choice is automatically preserved across browser sessions.
 
-* Use labels to categorize tasks (Homework, Exam, Reading, Project)
-* Set priority levels (High, Medium, Low)
-* Add tags for easy filtering
-* Archive completed tasks
+Running the Jekyll Marketing Site
+---------------------------------
 
-Setting Up Smart Reminders
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The ``website/`` directory contains the Jekyll-based marketing site:
 
-**Creating Reminders**
+1. Run the local Jekyll server::
 
-1. Open any task
-2. Click "Add Reminder"
-3. Choose reminder timing:
-   
-   * 1 day before deadline
-   * 1 week before deadline
-   * Custom time
-   * Recurring reminders
+    npm run dev:website
+    # or
+    cd website && bundle exec jekyll serve
 
-4. Select notification method:
-   
-   * In-app notifications
-   * Email notifications
-   * Browser notifications
+2. Open ``http://localhost:4000`` to preview the landing pages.
 
-**Managing Notifications**
-
-* View all upcoming reminders in the Notifications panel
-* Snooze reminders if needed
-* Mark reminders as complete
-* Customize notification preferences in Settings
-
-Tracking Your Progress
-~~~~~~~~~~~~~~~~~~~~~~~
-
-**Viewing Analytics**
-
-Access the Progress Dashboard to see:
-
-* **Time Spent** - Hours dedicated to each course
-* **Completion Rate** - Percentage of tasks completed on time
-* **Productivity Trends** - Daily/weekly productivity graphs
-* **Subject Breakdown** - Time distribution across courses
-
-**Generating Reports**
-
-* Weekly summary of completed tasks
-* Monthly productivity reports
-* Semester overview
-* Export data as CSV or PDF
-
-Collaborating on Group Projects
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Creating Shared Boards**
-
-1. Create a new board
-2. Click "Share Board"
-3. Invite team members by email or username
-4. Set permissions (View, Edit, Admin)
-
-**Working Together**
-
-* Add comments to tasks for discussion
-* Mention team members with @username
-* Track who's working on what
-* View activity log for all changes
-* Real-time updates when team members make changes
-
-Managing Resources
-~~~~~~~~~~~~~~~~~~
-
-**Attaching Files**
-
-* Upload PDFs, images, or documents to any task
-* Attach links to online resources
-* Add notes and study materials
-* Organize files in folders
-
-**Accessing Resources**
-
-* Quick search across all attached resources
-* Filter by file type or course
-* Download files for offline access
-* Share resources with team members
 
 Using the Calendar View
 ~~~~~~~~~~~~~~~~~~~~~~~~

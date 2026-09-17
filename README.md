@@ -20,19 +20,19 @@ With StudyFlow, you can:
 
 ## Project Status
 
-This is the **skeleton structure** for version **v0.0.1**.
+StudyFlow is currently at version **v0.1.0 (MVP)**.
 
 Currently, the project includes:
-- ✅ Jekyll-based marketing website
-- ✅ Sphinx documentation setup
-- ✅ Project structure and contribution guidelines
-- 🚧 Core application (in development)
+- ✅ **Core Application**: Interactive Kanban board MVP with task CRUD, multi-board management, deadline alerts, browser reminders, progress tracking analytics (Chart.js), and dark mode.
+- ✅ **Marketing Website**: Jekyll-based landing site with responsive styling and automatic GitHub Pages deployment.
+- ✅ **Sphinx Documentation**: Complete technical guide and architecture documentation configured with ReadTheDocs.
+- ✅ **CI/CD Automation**: GitHub Actions deployment workflows, issue templates, PR template, and security policy.
 
 ## Architecture (Monorepo)
 
 To maintain a professional, industry-standard structure, StudyFlow is organized as a **Monorepo**. It contains three primary components:
 
-1. **The Core App** (`public/` & `src/`): The actual task management web application.
+1. **The Core App** (`public/`): The lightweight, client-side task management web application.
 2. **The Marketing Website** (`website/`): A Jekyll-based landing page to promote the app.
 3. **The Technical Docs** (`docs/`): Sphinx-based documentation for developers and contributors.
 

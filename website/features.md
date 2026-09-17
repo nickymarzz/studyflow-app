@@ -25,9 +25,9 @@ Discover how StudyFlow transforms your study habits.
         <p>View analytics on your study habits. See how much time you spend on each subject.</p>
     </div>
     <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
-        <h3>Resource Management</h3>
-        <p>Attach lecture notes, PDFs, and links directly to your tasks for easy access.</p>
+        <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+        <h3>Multi-Board Support</h3>
+        <p>Create distinct boards for each course, term, or personal project to keep your workflows organized.</p>
     </div>
     <div class="feature-card">
         <div class="feature-icon"><i class="fas fa-moon"></i></div>

@@ -31,34 +31,31 @@ Key Features
   View analytics on your study habits. See how much time you spend on each subject and track 
   your productivity over time.
 
-**📁 Resource Management**
-  Attach lecture notes, PDFs, and links directly to your tasks for easy access. Keep all your 
-  study materials organized in one place.
-
-**👥 Collaboration**
-  Work on group projects with shared boards, comments, and real-time updates. Collaborate 
-  seamlessly with your classmates.
-
-**📅 Smart Calendar**
-  Visualize your deadlines with our integrated academic calendar view. Sync with your existing 
-  calendar apps.
+**📁 Multi-Board Organization**
+  Create separate Kanban boards for every course, semester, or personal project. Switch between 
+  them instantly without any backend setup.
 
 **🌙 Dark Mode**
   Easy on the eyes for those late-night study sessions. Toggle between light and dark themes 
   based on your preference.
 
-**🔒 Privacy First**
-  Your data is yours. Self-host StudyFlow and keep your academic life private. No data mining, 
-  no tracking, just pure productivity.
+**🔒 Privacy First & Offline Ready**
+  All tasks, boards, and preferences are stored directly in your browser's LocalStorage. 
+  Zero tracking, zero cloud dependencies, complete privacy, and lightning-fast speed.
 
 Project Status
 --------------
 
-This is the skeleton structure for version **v0.0.1**.
+StudyFlow is currently at version **v0.1.0 (MVP)**.
 
 Currently includes:
 
-* ✅ Jekyll-based marketing website
-* ✅ Sphinx documentation setup
-* ✅ Project structure and contribution guidelines
-* 🚧 Core application (in development)
+* ✅ Interactive Kanban board application with HTML5 drag-and-drop
+* ✅ Task creation, editing, deletion, priority flags, and due date alerts
+* ✅ Multi-board management and switching
+* ✅ Browser desktop notifications for upcoming reminders
+* ✅ Visual progress analytics modal with interactive doughnut charts (Chart.js)
+* ✅ Jekyll-based marketing website deployed to GitHub Pages
+* ✅ Sphinx technical documentation hosted on ReadTheDocs
+* ✅ GitHub Actions CI/CD workflows and repository templates
+

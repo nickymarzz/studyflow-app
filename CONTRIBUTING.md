@@ -70,33 +70,32 @@ The `website/` directory contains the Jekyll-based marketing site for StudyFlow.
 5. **Access the website**:
    Open your browser and navigate to `http://localhost:4000`
 
-### Setting Up the Application (Future Development)
+### Setting Up the Application
 
-For contributing to the main StudyFlow application in the `src/` and `public/` directories:
+For contributing to the main StudyFlow application in the `public/` directory:
 
-1. **Install dependencies**:
+1. **Start the application development server**:
    ```bash
-   npm install
-   ```
-
-2. **Start the development server**:
-   ```bash
+   npm run dev:app
+   # or
    npm run dev
    ```
 
-3. **Access the application**:
+2. **Access the application**:
    Open your browser and navigate to `http://localhost:3000`
 
 ### Building Documentation
 
-To build the Sphinx documentation:
+To build the Sphinx documentation locally:
 
 ```bash
-# On Windows
-.\make html
+# Using npm script from repository root
+npm run dev:docs
 
-# On Unix/Mac
-make html
+# Or navigating directly to docs/
+cd docs
+make html         # macOS / Linux
+.\make.bat html   # Windows
 ```
 
 For additional setup details or troubleshooting, refer to the main [README.md](README.md).

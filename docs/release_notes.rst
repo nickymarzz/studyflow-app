@@ -3,6 +3,36 @@ Release Notes
 
 This page documents all notable changes to the StudyFlow project.
 
+Version 0.1.0 (Current Release)
+-------------------------------
+
+**Release Date**: September 2026
+
+**Status**: MVP Release
+
+This release delivers the functional Core Application MVP for StudyFlow alongside monorepo automation and CI/CD enhancements.
+
+Added
+~~~~~
+
+* **Core Kanban Web Application**
+
+  * Interactive Kanban board with HTML5 drag-and-drop task movement
+  * Full task management (Create, Read, Update, Delete) with priority badges (High, Medium, Low)
+  * Due date tracking with automatic dynamic badges (Overdue, Due today, Due soon)
+  * Multi-board management allowing users to create separate boards for different courses or projects
+  * Desktop notifications for scheduled task reminders via browser Notification API
+  * Visual Progress Analytics modal with dynamic completion rates and interactive Chart.js doughnut chart
+  * Dark and Light theme toggle with LocalStorage persistence
+  * Pure client-side architecture using LocalStorage for zero-setup, private, offline-capable usage
+
+* **Monorepo & CI/CD Infrastructure**
+
+  * Unified npm scripts in ``package.json`` (``dev:app``, ``dev:website``, ``dev:docs``)
+  * Automated GitHub Actions workflow deploying the Jekyll website to GitHub Pages
+  * GitHub issue templates (Bug report, Feature request) and Pull Request template
+  * Security policy (``SECURITY.md``)
+
 Version 0.0.1 (Skeleton Release)
 ---------------------------------
 
@@ -35,7 +65,6 @@ Added
   * Apache 2.0 License
   * Code of Conduct
   * Contributing guidelines
-  * Issue and PR templates (planned)
 
 * **Community Channels**
   
@@ -50,78 +79,31 @@ Added
   * Bundler for Ruby dependencies
   * npm for future JavaScript development
 
-Changed
-~~~~~~~
-
-* N/A (initial release)
-
-Fixed
-~~~~~
-
-* N/A (initial release)
-
-Known Issues
-~~~~~~~~~~~~
-
-* Core application not yet implemented
-* API endpoints are planned but not available
-* No user authentication system yet
-* Database integration pending
-
-Upcoming in v0.1.0
-------------------
-
-**Planned Features**:
-
-* Basic Kanban board functionality
-* Task creation and management
-* User authentication system
-* Database setup (PostgreSQL)
-* Basic API endpoints
-* Frontend application structure
-
-**Target Release**: Q1 2026
-
 Future Roadmap
 --------------
 
 Version 0.2.0 (Planned)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* Smart reminders system
-* Email notifications
-* Calendar integration
-* Progress tracking dashboard
-* User profiles
+* Data backup & restore (JSON import and export)
+* Integrated Pomodoro study timer
+* Course color coding and custom tag filters
+* Enhanced keyboard navigation shortcuts
 
 Version 0.3.0 (Planned)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* Collaboration features
-* Shared boards
-* Real-time updates
-* Comments and mentions
-* Activity tracking
-
-Version 0.4.0 (Planned)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* Resource management
-* File attachments
-* Link organization
-* Advanced search
-* Tagging system
+* Progressive Web App (PWA) offline support and service worker
+* Academic calendar timeline view
+* Customizable column workflows for Kanban boards
 
 Version 1.0.0 (Planned)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* Full feature set complete
-* Mobile-responsive design
-* PWA capabilities
-* Offline support
-* Plugin system
-* Comprehensive API
-* Mobile app (React Native)
+* Mobile touch gesture optimization
+* Internationalization (i18n) support
+* Full accessibility (WCAG 2.1 AA) compliance
+
 
 Changelog Format
 ----------------

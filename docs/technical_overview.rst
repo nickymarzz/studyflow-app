@@ -7,59 +7,39 @@ and design decisions.
 Project Structure
 -----------------
 
-Current Architecture (v0.0.1)
+Current Architecture (v0.1.0)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-StudyFlow is currently in its early stages with the following components:
+StudyFlow is structured as an industry-standard lightweight monorepo comprising three specialized components:
 
-**Jekyll Website** (``website/`` directory)
+**1. Core Application** (``public/`` directory)
 
-* Static site generator for the marketing website
-* Built with Jekyll 4.x
-* Uses Liquid templating
-* Responsive design with custom CSS
-* Deployed via GitHub Pages
+* Lightweight Single Page Application (SPA) built with vanilla HTML5, CSS3, and modern JavaScript (ES6+)
+* Drag-and-drop Kanban task management across configurable status columns
+* Client-side LocalStorage state persistence (zero database or backend setup required)
+* Desktop browser notifications via Notification API
+* Client-side visual progress analytics powered by Chart.js
+* Dark / Light mode theme support
 
-**Sphinx Documentation** (``docs/`` directory)
+**2. Marketing Website** (``website/`` directory)
 
-* Documentation built with Sphinx
+* Static landing site built with Jekyll 4.x
+* Liquid templating with responsive custom CSS
+* Automated CI/CD deployment to GitHub Pages via GitHub Actions
+
+**3. Sphinx Documentation** (``docs/`` directory)
+
+* Comprehensive technical documentation built with Sphinx
 * reStructuredText (.rst) format
-* Hosted on ReadTheDocs
-* Auto-builds on commits to main branch
+* Automated builds and hosting via ReadTheDocs
 
-**Project Infrastructure**
+**4. Project Infrastructure**
 
 * Version control: Git + GitHub
-* CI/CD: GitHub Actions
-* Issue tracking: GitHub Issues
-* Discussions: GitHub Discussions + Discord
+* CI/CD: GitHub Actions (Jekyll build & deploy)
+* Issue & PR Templates, Security Policy (``SECURITY.md``)
+* Unified npm runner scripts (``dev:app``, ``dev:website``, ``dev:docs``)
 
-Planned Application Architecture
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The main StudyFlow application (in development) will follow a modern web architecture:
-
-**Frontend**
-
-* **Framework**: React or Vue.js (to be decided)
-* **Build Tool**: Vite or Next.js
-* **Styling**: CSS Modules or Tailwind CSS
-* **State Management**: Redux or Zustand
-* **UI Components**: Custom components with accessibility focus
-
-**Backend** (Future)
-
-* **Runtime**: Node.js
-* **Framework**: Express.js or Fastify
-* **Database**: PostgreSQL or MongoDB
-* **Authentication**: JWT-based auth
-* **API**: RESTful API or GraphQL
-
-**Deployment**
-
-* **Frontend**: Vercel, Netlify, or GitHub Pages
-* **Backend**: Self-hosted or cloud platforms (AWS, DigitalOcean)
-* **Database**: Self-hosted or managed database service
 
 Technologies
 ------------
@@ -133,9 +113,9 @@ Student-Centric
 ~~~~~~~~~~~~~~~
 
 * Designed specifically for academic workflows
-* Course-based organization
-* Academic calendar integration
-* Group project collaboration features
+* Course and multi-board organization
+* Deadline tracking with smart reminder alerts
+* Visual completion and study analytics
 
 Open Source
 ~~~~~~~~~~~
@@ -236,37 +216,40 @@ GitHub Actions workflows for:
 Future Roadmap
 --------------
 
-Phase 1: Foundation (Current)
+Phase 1: Foundation (Complete)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* ✅ Project structure
-* ✅ Jekyll website
-* ✅ Documentation setup
-* ✅ Community channels
+* ✅ Monorepo structure
+* ✅ Jekyll marketing website
+* ✅ Sphinx documentation setup & ReadTheDocs
+* ✅ Community channels & templates
 
-Phase 2: Core Application (Next)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Phase 2: Core Application MVP (Complete - v0.1.0)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* 🚧 Basic Kanban board functionality
-* 🚧 Task creation and management
-* 🚧 User authentication
-* 🚧 Database setup
+* ✅ Interactive HTML5 drag-and-drop Kanban board
+* ✅ Full Task CRUD operations (title, description, priority, due date)
+* ✅ Multi-board creation and switching
+* ✅ Browser desktop notifications for deadlines
+* ✅ Visual progress analytics modal with Chart.js
+* ✅ Light / Dark mode theme switching
+* ✅ LocalStorage state persistence
 
-Phase 3: Advanced Features
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Phase 3: Enhancements (Planned - v0.2.0)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* ⏳ Smart reminders
-* ⏳ Progress tracking
-* ⏳ Calendar integration
-* ⏳ Collaboration features
+* ⏳ JSON data backup and restore (export / import)
+* ⏳ Built-in Pomodoro focus timer
+* ⏳ Tag filtering and course categorization
+* ⏳ Extended keyboard shortcuts
 
-Phase 4: Polish & Scale
-~~~~~~~~~~~~~~~~~~~~~~~~
+Phase 4: Polish & Scale (Planned - v1.0.0)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* ⏳ Mobile app (React Native)
-* ⏳ Offline support
-* ⏳ Advanced analytics
-* ⏳ Plugin system
+* ⏳ PWA offline caching with service workers
+* ⏳ Mobile touch gesture optimization
+* ⏳ Internationalization (i18n) support
+* ⏳ WCAG 2.1 AA accessibility compliance
 
 Contributing to Development
 ----------------------------

@@ -2,7 +2,7 @@
     "name": "studyflow-app",
     "version": "0.1.0",
     "description": "Open-source task and project management tool designed for university students and academic teams",
-    "main": "src/app.js",
+    "main": "public/app.js",
     "scripts": {
         "dev": "npx --yes http-server public -p 3000 -c-1",
         "dev:app": "npx --yes http-server public -p 3000 -c-1",
