@@ -61,7 +61,7 @@ This project utilizes modern CI/CD practices for automated deployment and versio
 
 ## Documentation
 
-Full documentation is available at [ReadTheDocs](https://studyflow-app.readthedocs.io/).
+Full documentation is available at [ReadTheDocs](https://studyflow-test.readthedocs.io/en/latest/).
 
 ## Contributing
 

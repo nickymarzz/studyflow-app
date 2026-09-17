@@ -106,7 +106,7 @@ Community
 
 * Join our `Discord server <https://discord.gg/v2ctzYdp>`_
 * Ask on `GitHub Discussions <https://github.com/nickymarzz/studyflow-app/discussions>`_
-* Check our documentation at `ReadTheDocs <https://studyflow-app.readthedocs.io/>`_
+* Check our documentation at `ReadTheDocs <https://studyflow-test.readthedocs.io/en/latest/>`_
 
 **How can I stay updated on StudyFlow development?**
 

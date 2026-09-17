@@ -62,7 +62,7 @@ Current Stack
 :Tool: Sphinx
 :Format: reStructuredText
 :Theme: Read the Docs theme
-:Hosting: ReadTheDocs.io
+:Hosting: `ReadTheDocs <https://studyflow-test.readthedocs.io/en/latest/>`_
 
 **Development Tools**
 

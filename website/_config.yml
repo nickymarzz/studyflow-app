@@ -19,6 +19,6 @@ navigation:
   - title: Contact
     url: /contact/
   - title: Docs
-    url: https://studyflow-app.readthedocs.io/
+    url: https://studyflow-test.readthedocs.io/en/latest/
   - title: GitHub
     url: https://github.com/nickymarzz/studyflow-app

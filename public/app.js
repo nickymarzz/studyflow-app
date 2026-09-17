@@ -14,7 +14,7 @@
 console.log('%c📚 StudyFlow v0.1.0', 'color: #667eea; font-size: 20px; font-weight: bold;');
 console.log('%cBuilt by students, for students 🎓', 'color: #764ba2; font-size: 14px;');
 console.log('GitHub: https://github.com/nickymarzz/studyflow-app');
-console.log('Docs: https://studyflow-app.readthedocs.io/');
+console.log('Docs: https://studyflow-test.readthedocs.io/en/latest/');
 
 const STORAGE_KEYS = {
     TASKS: 'studyflow_tasks',
