@@ -47,7 +47,7 @@ The `website/` directory contains the Jekyll-based marketing site for StudyFlow.
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/luisjarquec/studyflow-app.git
+   git clone https://github.com/nickymarzz/studyflow-app.git
    cd studyflow-app
    ```
 

@@ -144,8 +144,8 @@ If you need assistance:
 
 * Check the :doc:`faq` for common questions
 * Join our `Discord server <https://discord.gg/v2ctzYdp>`_ for real-time help
-* Ask on `GitHub Discussions <https://github.com/luisjarquec/studyflow-app/discussions>`_
-* Report bugs on `GitHub Issues <https://github.com/luisjarquec/studyflow-app/issues>`_
+* Ask on `GitHub Discussions <https://github.com/nickymarzz/studyflow-app/discussions>`_
+* Report bugs on `GitHub Issues <https://github.com/nickymarzz/studyflow-app/issues>`_
 
 Next Steps
 ----------

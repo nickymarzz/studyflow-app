@@ -9,14 +9,14 @@ StudyFlow Documentation
 Welcome to StudyFlow!
 ---------------------
 
-StudyFlow is the ultimate open-source task management tool designed by students, for students. 
-Organize courses, track deadlines, and collaborate seamlessly.
+StudyFlow is a lightweight open-source task management tool designed by students, for students. 
+Organize courses, track deadlines, and monitor your study productivity with client-side simplicity.
 
 **Master Your Academic Life**
 
-University students often have to manage multiple courses, deadlines, and group projects without 
+University students often have to manage multiple courses and deadlines without 
 a tool designed for academic workflows. StudyFlow fills that gap by providing an intuitive, 
-customizable, and self-hosted task management solution built specifically for students.
+customizable, and completely private task management solution that runs right in your browser.
 
 
 .. toctree::

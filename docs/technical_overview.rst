@@ -260,4 +260,4 @@ development of StudyFlow.
 For architecture discussions and technical questions, join our:
 
 * `Discord server <https://discord.gg/v2ctzYdp>`_
-* `GitHub Discussions <https://github.com/luisjarquec/studyflow-app/discussions>`_
+* `GitHub Discussions <https://github.com/nickymarzz/studyflow-app/discussions>`_

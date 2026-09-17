@@ -3,85 +3,82 @@ Maintenance and Troubleshooting
 
 This guide covers common issues, maintenance tasks, and troubleshooting for StudyFlow.
 
+Core Application Troubleshooting
+---------------------------------
+
+Port 3000 Already in Use
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Problem**: Starting ``npm run dev:app`` indicates port 3000 is occupied.
+
+**Solution**: Run http-server on an alternative port::
+
+    npx http-server public -p 3001 -c-1
+
+Resetting Local Data
+~~~~~~~~~~~~~~~~~~~~
+
+**Problem**: Need to reset test data or restore the default board.
+
+**Solution**: Open Developer Tools (``F12``) -> **Application** -> **Storage** -> **Local storage** -> select ``http://localhost:3000`` and clear items, or run in the Console::
+
+    localStorage.clear();
+    location.reload();
+
+Notification Permissions Blocked
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Problem**: Task reminders do not trigger desktop notifications.
+
+**Solution**: Click the padlock / tune icon in your browser's address bar next to ``localhost:3000``, ensure **Notifications** is set to **Allow**, and refresh the page.
+
 Jekyll Website Issues
 ---------------------
 
 Jekyll Won't Start
 ~~~~~~~~~~~~~~~~~~
 
-**Problem**: ``jekyll serve`` fails to start
+**Problem**: ``bundle exec jekyll serve`` fails to start
 
 **Solutions**:
 
-1. Check Ruby version::
+1. Check Ruby and Bundler installation::
 
-    ruby --version  # Should be 2.7+
+    ruby --version
+    bundle --version
 
-2. Reinstall dependencies::
+2. Install gems in the ``website/`` directory::
 
+    cd website
     bundle install
 
 3. Clear Jekyll cache::
 
+    cd website
     bundle exec jekyll clean
     bundle exec jekyll serve
-
-Bundler Errors
-~~~~~~~~~~~~~~
-
-**Problem**: ``bundle install`` fails
-
-**Solutions**:
-
-1. Update Bundler::
-
-    gem install bundler
-
-2. Remove Gemfile.lock and reinstall::
-
-    rm Gemfile.lock
-    bundle install
-
-Port Already in Use
-~~~~~~~~~~~~~~~~~~~
-
-**Problem**: Port 4000 is already in use
-
-**Solution**: Use a different port::
-
-    bundle exec jekyll serve --port 4001
 
 Documentation Build Issues
 --------------------------
 
-Sphinx Build Fails
-~~~~~~~~~~~~~~~~~~
+Sphinx Build Fails (Missing roman_numerals)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Problem**: ``make html`` fails
+**Problem**: Sphinx 9.x throws ``No module named 'roman_numerals'`` when running ``make html``.
 
-**Solutions**:
+**Solution**: Install or reinstall the ``roman-numerals-py`` package::
 
-1. Install/update Sphinx::
+    pip install -U roman-numerals-py
 
-    pip install -U sphinx sphinx_rtd_theme
+Missing Sphinx Dependencies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-2. Check for syntax errors in .rst files
+**Problem**: Import errors or missing theme when building documentation.
 
-3. Clean build directory::
+**Solution**: Install requirements from the repository root::
 
-    cd docs
-    rm -rf _build
-    make html
-
-Missing Dependencies
-~~~~~~~~~~~~~~~~~~~~
-
-**Problem**: Import errors during build
-
-**Solution**: Install requirements::
-
-    cd docs
-    pip install -r requirements.txt
+    pip install -r docs/requirements.txt
+    npm run dev:docs
 
 Git and GitHub Issues
 ---------------------
@@ -198,7 +195,7 @@ Check for security vulnerabilities::
     # Ruby
     bundle audit
     
-    # Node.js (future)
+    # Node.js
     npm audit
     npm audit fix
 
@@ -208,7 +205,7 @@ Getting Help
 If you can't resolve an issue:
 
 * Check the :doc:`faq`
-* Search `GitHub Issues <https://github.com/luisjarquec/studyflow-app/issues>`_
+* Search `GitHub Issues <https://github.com/nickymarzz/studyflow-app/issues>`_
 * Ask on `Discord <https://discord.gg/v2ctzYdp>`_
 * Open a new issue with detailed information
 

@@ -1,340 +1,168 @@
 API Reference
 =============
 
-.. note::
-   The StudyFlow API is currently in planning stages. This document describes the planned API 
-   structure for future implementation.
+This document provides a technical reference for the StudyFlow JavaScript client API and its data models.
 
 Overview
 --------
 
-The StudyFlow API will be a RESTful API that allows programmatic access to StudyFlow features. 
-It will support creating and managing tasks, boards, reminders, and user data.
+StudyFlow is designed as a client-side Single Page Application (SPA). The application logic is encapsulated within the globally available ``StudyFlow`` object in ``public/app.js``, which also exports itself for CommonJS/module environments.
 
-Base URL
---------
+All persistence is handled client-side using browser ``localStorage``, ensuring instant responsiveness, full offline capabilities, and zero data leakage.
 
-::
-
-    https://api.studyflow.app/v1
-
-Or for self-hosted instances::
-
-    https://your-domain.com/api/v1
-
-Authentication
+Storage Schema
 --------------
 
-All API requests require authentication using JWT (JSON Web Tokens).
+StudyFlow uses the following keys in ``localStorage``:
 
-**Obtaining a Token**
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
 
-POST ``/auth/login``
+   * - Storage Key
+     - Description
+   * - ``studyflow_tasks``
+     - JSON array containing all task entities across all boards.
+   * - ``studyflow_boards``
+     - JSON array of board entities created by the user.
+   * - ``studyflow_current_board``
+     - String ID of the currently selected active board.
+   * - ``studyflow_theme``
+     - User theme preference (``"light"`` or ``"dark"``).
+   * - ``studyflow_reminders_sent``
+     - JSON array of notification keys (``taskId_timestamp``) already triggered.
 
-Request body::
+Data Models
+-----------
 
-    {
-      "email": "user@example.com",
-      "password": "your_password"
+Task Model
+~~~~~~~~~~
+
+.. code-block:: typescript
+
+    interface Task {
+      id: string;             // Unique identifier (e.g., 'task_172658..._abc12')
+      boardId: string;        // ID of the board the task belongs to
+      title: string;          // Task title
+      description: string;    // Task description or markdown notes
+      status: 'todo' | 'inprogress' | 'done';
+      priority: 'low' | 'medium' | 'high';
+      dueDate: string | null; // ISO 8601 string or date input format
+      reminder: string | null;// ISO 8601 date-time string for browser alert
+      createdAt: string;      // ISO 8601 timestamp
+      updatedAt: string;      // ISO 8601 timestamp
     }
 
-Response::
+Board Model
+~~~~~~~~~~~
 
-    {
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-      "user": {
-        "id": "123",
-        "email": "user@example.com",
-        "name": "John Doe"
-      }
+.. code-block:: typescript
+
+    interface Board {
+      id: string;             // Unique identifier (e.g., 'default' or 'board_172658...')
+      name: string;           // Display name (e.g., '📘 CS101 - Data Structures')
     }
 
-**Using the Token**
+StudyFlow API Methods
+---------------------
 
-Include the token in the Authorization header::
+Task Management (``StudyFlow.tasks``)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+.. js:function:: StudyFlow.tasks.getAll()
 
-Endpoints (Planned)
--------------------
+   Returns an array of all tasks belonging to the currently active board.
 
-Boards
-~~~~~~
+   :returns: Array of ``Task`` objects.
 
-**List all boards**
+.. js:function:: StudyFlow.tasks.getById(id)
 
-GET ``/boards``
+   Finds a task by its unique identifier.
 
-Response::
+   :param string id: Task identifier.
+   :returns: ``Task`` object or ``undefined``.
 
-    {
-      "boards": [
-        {
-          "id": "board_123",
-          "name": "CS101 - Data Structures",
-          "description": "Course assignments and projects",
-          "created_at": "2025-01-15T10:00:00Z",
-          "updated_at": "2025-01-20T15:30:00Z"
-        }
-      ]
-    }
+.. js:function:: StudyFlow.tasks.create(data)
 
-**Create a board**
+   Creates and persists a new task in the active board.
 
-POST ``/boards``
+   :param object data: Task fields (``title``, ``description``, ``status``, ``priority``, ``dueDate``, ``reminder``).
+   :returns: Newly created ``Task`` object.
 
-Request body::
+.. js:function:: StudyFlow.tasks.update(id, data)
 
-    {
-      "name": "Math 201",
-      "description": "Calculus II assignments",
-      "columns": ["To Do", "In Progress", "Done"]
-    }
+   Updates an existing task's properties and refreshes the Kanban view.
 
-**Get a specific board**
+   :param string id: Task identifier.
+   :param object data: Updated fields.
+   :returns: Updated ``Task`` object or ``null``.
 
-GET ``/boards/{board_id}``
+.. js:function:: StudyFlow.tasks.delete(id)
 
-**Update a board**
+   Removes a task from state and LocalStorage.
 
-PUT ``/boards/{board_id}``
+   :param string id: Task identifier.
+   :returns: Boolean indicating deletion success.
 
-**Delete a board**
+.. js:function:: StudyFlow.tasks.move(id, newStatus)
 
-DELETE ``/boards/{board_id}``
+   Transitions a task between columns (``'todo'``, ``'inprogress'``, ``'done'``).
 
-Tasks
-~~~~~
+   :param string id: Task identifier.
+   :param string newStatus: New status column.
+   :returns: Updated ``Task`` object.
 
-**List tasks in a board**
+Board Management (``StudyFlow.boards``)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-GET ``/boards/{board_id}/tasks``
+.. js:function:: StudyFlow.boards.getAll()
 
-Query parameters:
+   Returns a list of all existing boards.
 
-* ``status`` - Filter by status (todo, in_progress, done)
-* ``priority`` - Filter by priority (high, medium, low)
-* ``due_date`` - Filter by due date
+   :returns: Array of ``Board`` objects.
 
-**Create a task**
+.. js:function:: StudyFlow.boards.create(name)
 
-POST ``/boards/{board_id}/tasks``
+   Creates a new board, persists it to storage, and renders it in the board selector.
 
-Request body::
+   :param string name: Name of the board.
+   :returns: Newly created ``Board`` object.
 
-    {
-      "title": "Complete Assignment 3",
-      "description": "Implement binary search tree",
-      "due_date": "2025-02-01T23:59:59Z",
-      "priority": "high",
-      "tags": ["homework", "coding"],
-      "column": "To Do"
-    }
+.. js:function:: StudyFlow.boards.switch(boardId)
 
-**Get a specific task**
+   Sets the active board, stores the selection in LocalStorage, and renders its tasks.
 
-GET ``/tasks/{task_id}``
+   :param string boardId: Board identifier to switch to.
 
-**Update a task**
+Reminders (``StudyFlow.reminders``)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-PUT ``/tasks/{task_id}``
+.. js:function:: StudyFlow.reminders.check()
 
-**Delete a task**
+   Scans tasks for pending reminders where ``reminder <= Date.now()`` and triggers alerts if not yet sent. Runs automatically every 30 seconds.
 
-DELETE ``/tasks/{task_id}``
+.. js:function:: StudyFlow.reminders.trigger(task)
 
-**Move a task**
+   Fires a native desktop Notification (if permission granted) and shows an in-app toast message.
 
-PATCH ``/tasks/{task_id}/move``
+.. js:function:: StudyFlow.reminders.requestPermission()
 
-Request body::
+   Requests desktop notification permission from the user via the browser's Notification API.
 
-    {
-      "column": "In Progress"
-    }
+Analytics (``StudyFlow.openAnalyticsModal``)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Reminders
-~~~~~~~~~
+.. js:function:: StudyFlow.openAnalyticsModal()
 
-**List reminders**
+   Calculates total task count and completion percentage for the active board, and renders/updates the interactive Chart.js doughnut chart.
 
-GET ``/reminders``
+Settings & Theme (``StudyFlow.settings``)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Create a reminder**
+.. js:function:: StudyFlow.settings.setTheme(theme)
 
-POST ``/tasks/{task_id}/reminders``
+   Sets the document theme attribute (``data-theme="dark"`` or ``"light"``) and persists the choice to LocalStorage.
 
-Request body::
+.. js:function:: StudyFlow.settings.toggleTheme()
 
-    {
-      "type": "email",
-      "time": "2025-01-31T09:00:00Z",
-      "recurring": false
-    }
-
-**Delete a reminder**
-
-DELETE ``/reminders/{reminder_id}``
-
-Users
-~~~~~
-
-**Get current user**
-
-GET ``/users/me``
-
-**Update user profile**
-
-PUT ``/users/me``
-
-Request body::
-
-    {
-      "name": "Jane Doe",
-      "email": "jane@example.com",
-      "preferences": {
-        "theme": "dark",
-        "notifications": true
-      }
-    }
-
-Analytics
-~~~~~~~~~
-
-**Get productivity stats**
-
-GET ``/analytics/productivity``
-
-Query parameters:
-
-* ``start_date`` - Start date for analytics
-* ``end_date`` - End date for analytics
-* ``board_id`` - Filter by specific board
-
-Response::
-
-    {
-      "total_tasks": 45,
-      "completed_tasks": 32,
-      "completion_rate": 0.71,
-      "time_spent": {
-        "CS101": 15.5,
-        "Math201": 12.3
-      }
-    }
-
-Response Formats
-----------------
-
-Success Response
-~~~~~~~~~~~~~~~~
-
-All successful responses follow this format::
-
-    {
-      "success": true,
-      "data": { ... },
-      "message": "Operation completed successfully"
-    }
-
-Error Response
-~~~~~~~~~~~~~~
-
-All error responses follow this format::
-
-    {
-      "success": false,
-      "error": {
-        "code": "VALIDATION_ERROR",
-        "message": "Invalid input data",
-        "details": {
-          "field": "due_date",
-          "issue": "Date must be in the future"
-        }
-      }
-    }
-
-HTTP Status Codes
------------------
-
-The API uses standard HTTP status codes:
-
-* ``200 OK`` - Request successful
-* ``201 Created`` - Resource created successfully
-* ``400 Bad Request`` - Invalid request data
-* ``401 Unauthorized`` - Authentication required
-* ``403 Forbidden`` - Insufficient permissions
-* ``404 Not Found`` - Resource not found
-* ``429 Too Many Requests`` - Rate limit exceeded
-* ``500 Internal Server Error`` - Server error
-
-Rate Limiting
--------------
-
-API requests are rate-limited to prevent abuse:
-
-* **Authenticated users**: 1000 requests per hour
-* **Unauthenticated requests**: 100 requests per hour
-
-Rate limit headers are included in all responses::
-
-    X-RateLimit-Limit: 1000
-    X-RateLimit-Remaining: 999
-    X-RateLimit-Reset: 1640995200
-
-Webhooks (Planned)
-------------------
-
-Webhooks will allow you to receive real-time notifications when events occur:
-
-* Task created
-* Task updated
-* Task completed
-* Reminder triggered
-* Board shared
-
-Examples
---------
-
-**Creating a Task with cURL**
-
-::
-
-    curl -X POST https://api.studyflow.app/v1/boards/board_123/tasks \
-      -H "Authorization: Bearer YOUR_TOKEN" \
-      -H "Content-Type: application/json" \
-      -d '{
-        "title": "Study for midterm",
-        "due_date": "2025-02-15T23:59:59Z",
-        "priority": "high"
-      }'
-
-**Fetching Tasks with JavaScript**
-
-::
-
-    const response = await fetch('https://api.studyflow.app/v1/boards/board_123/tasks', {
-      headers: {
-        'Authorization': 'Bearer YOUR_TOKEN'
-      }
-    });
-    const data = await response.json();
-    console.log(data.tasks);
-
-SDK Support (Future)
---------------------
-
-Official SDKs will be provided for:
-
-* JavaScript/TypeScript
-* Python
-* Go
-
-Community SDKs may be available for other languages.
-
-Further Information
--------------------
-
-* For implementation updates, see :doc:`release_notes`
-* For contributing to API development, see :doc:`contributing`
-* Join our `Discord <https://discord.gg/v2ctzYdp>`_ for API discussions
+   Toggles between light and dark themes.

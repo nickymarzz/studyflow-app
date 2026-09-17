@@ -133,10 +133,10 @@ Stay Updated
 
 To stay informed about new releases:
 
-* Watch the `GitHub repository <https://github.com/luisjarquec/studyflow-app>`_
+* Watch the `GitHub repository <https://github.com/nickymarzz/studyflow-app>`_
 * Join our `Discord server <https://discord.gg/v2ctzYdp>`_
 * Subscribe to our `Google Group <https://groups.google.com/g/study-flow-app>`_
-* Follow development on `GitHub Discussions <https://github.com/luisjarquec/studyflow-app/discussions>`_
+* Follow development on `GitHub Discussions <https://github.com/nickymarzz/studyflow-app/discussions>`_
 
 Contributing
 ------------

@@ -19,7 +19,7 @@ Have questions or feedback? We'd love to hear from you.
     </div>
     <div class="feature-card">
         <h3><i class="fab fa-github"></i> GitHub Issues</h3>
-        <p>Report bugs or request features on our <a href="https://github.com/luisjarquec/studyflow-app/issues">Issue Tracker</a>.</p>
+        <p>Report bugs or request features on our <a href="https://github.com/nickymarzz/studyflow-app/issues">Issue Tracker</a>.</p>
     </div>
 </div>
 

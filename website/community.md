@@ -9,7 +9,7 @@ permalink: /community/
 Connect with other students and developers building StudyFlow.
 
 <div class="community-links">
-    <a href="https://github.com/luisjarquec/studyflow-app/discussions" class="community-card">
+    <a href="https://github.com/nickymarzz/studyflow-app/discussions" class="community-card">
         <i class="fab fa-github fa-2x"></i>
         <div>
             <h3>GitHub Discussions</h3>
@@ -36,4 +36,4 @@ Connect with other students and developers building StudyFlow.
 
 We welcome contributions! Whether you're a developer, designer, or just have a great idea, we want to hear from you.
 
-Check out our [Contribution Guidelines](https://github.com/luisjarquec/studyflow-app/blob/main/CONTRIBUTING.md) to get started.
+Check out our [Contribution Guidelines](https://github.com/nickymarzz/studyflow-app/blob/main/CONTRIBUTING.md) to get started.
